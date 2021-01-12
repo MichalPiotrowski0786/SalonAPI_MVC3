@@ -1,0 +1,23 @@
+﻿@page
+@model ResetAuthenticatorModel
+@{
+    ViewData["Title"] = "Zresetuj klucz weryfikacyjny";
+    ViewData["ActivePage"] = ManageNavPages.TwoFactorAuthentication;
+}
+
+<partial name="_StatusMessage" for="StatusMessage" />
+<h4>@ViewData["Title"]</h4>
+<div class="alert alert-warning" role="alert">
+    <p>
+        <span class="glyphicon glyphicon-warning-sign"></span>
+        <strong>Jeśli zresetujesz klucz weryfikacyjny, aplikacja której używasz do dwustopniowej autoryzacji przestanie działać.</strong>
+    </p>
+    <p>
+        Ten proces wyłączy dwustopniową autoryzację dopóki nie skonfigurujesz swojej aplikacji do autoryzacji.
+    </p>
+</div>
+<div>
+    <form id="reset-authenticator-form" method="post" class="form-group">
+        <button id="reset-authenticator-button" class="btn btn-danger" type="submit">Zresetuj klucz weryfikacyjny</button>
+    </form>
+</div>

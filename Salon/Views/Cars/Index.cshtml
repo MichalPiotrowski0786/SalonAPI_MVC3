@@ -1,0 +1,81 @@
+﻿@model IEnumerable<Salon.Models.Car>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+@if (TempData["add"] != null)
+{
+    <p class="alert-success">
+        @TempData["add"]
+    </p>
+}
+
+@if (TempData["del"] != null)
+{
+    <p class="alert-danger">
+        @TempData["del"]
+    </p>
+}
+
+
+<h1>Katalog</h1>
+
+<p>
+    <a asp-action="Create">Dodaj auto</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Marka)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Model)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Kolor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Moc)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rocznik)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cena)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Marka)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Model)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Kolor)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Moc)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Rocznik)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cena)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edytuj</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Szczegóły</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Usuń</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
