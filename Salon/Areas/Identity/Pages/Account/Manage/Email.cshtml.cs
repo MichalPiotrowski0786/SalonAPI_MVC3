@@ -45,7 +45,7 @@ namespace Salon.Areas.Identity.Pages.Account.Manage
         {
             [Required]
             [EmailAddress]
-            [Display(Name = "New email")]
+            [Display(Name = "Nowy email")]
             public string NewEmail { get; set; }
         }
 
@@ -103,11 +103,11 @@ namespace Salon.Areas.Identity.Pages.Account.Manage
                     "Confirm your email",
                     $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
-                StatusMessage = "Confirmation link to change email sent. Please check your email.";
+                StatusMessage = "Link weryfikacyjny do zmiany adresu email został wysłany.";
                 return RedirectToPage();
             }
 
-            StatusMessage = "Your email is unchanged.";
+            StatusMessage = "Wprowadzony adres email jest taki sam jak poprzedni. Wprowadź inny adres email";
             return RedirectToPage();
         }
 
@@ -139,7 +139,7 @@ namespace Salon.Areas.Identity.Pages.Account.Manage
                 "Confirm your email",
                 $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
-            StatusMessage = "Verification email sent. Please check your email.";
+            StatusMessage = "Link weryfikacyjny do zmiany adresu email został wysłany.";
             return RedirectToPage();
         }
     }
