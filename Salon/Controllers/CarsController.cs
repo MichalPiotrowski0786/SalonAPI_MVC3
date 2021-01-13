@@ -43,6 +43,7 @@ namespace Salon.Controllers
         }
 
         /*[Authorize(Roles = "admins")]*/
+        [Authorize(Policy = "writepolicy")]
         public IActionResult Create()
         {
             return View();
@@ -71,6 +72,7 @@ namespace Salon.Controllers
         }
 
         /*[Authorize(Roles = "admins")]*/
+        [Authorize(Policy = "writepolicy")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -119,6 +121,7 @@ namespace Salon.Controllers
         }
 
         /*[Authorize(Roles = "admins")]*/
+        [Authorize(Policy = "writepolicy")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)

@@ -30,7 +30,9 @@ namespace Salon
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            services.AddIdentity<IdentityUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddDefaultTokenProviders()
+                .AddDefaultUI()
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
@@ -38,6 +40,13 @@ namespace Salon
 
             services.AddControllersWithViews().AddSessionStateTempDataProvider();
             services.AddRazorPages().AddSessionStateTempDataProvider();
+
+            services.AddAuthorization(options => {
+                options.AddPolicy("readpolicy",
+                    builder => builder.RequireRole("Admin", "Manager", "User"));
+                options.AddPolicy("writepolicy",
+                    builder => builder.RequireRole("Admin", "Manager"));
+            });
 
             // sesje
             services.AddSession(options =>
