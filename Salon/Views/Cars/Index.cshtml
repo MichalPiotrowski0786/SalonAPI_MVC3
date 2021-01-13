@@ -28,7 +28,7 @@
 <form asp-action="Index" method="get">
     <div class="form-actions no-color">
         <p>
-            Znajdź poprzez markę: <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" />
+            Podaj markę lub model: <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" />
             <input type="submit" value="Szukaj" class="btn btn-default" /> |
             <a asp-action="Index">Powrót do listy</a>
         </p>
@@ -54,6 +54,9 @@
                 <a asp-action="Index" asp-route-sortOrder="@ViewData["RocznikSort"]">@Html.DisplayNameFor(model => model.Rocznik)</a>
             </th>
             <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["PrzebiegSort"]">@Html.DisplayNameFor(model => model.Przebieg)</a>
+            </th>
+            <th>
                 <a asp-action="Index" asp-route-sortOrder="@ViewData["PriceSort"]">@Html.DisplayNameFor(model => model.Cena)</a>
             </th>
             <th></th>
@@ -73,13 +76,16 @@
                     @Html.DisplayFor(modelItem => item.Kolor)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Moc)
+                    @Html.DisplayFor(modelItem => item.Moc) KM
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Rocznik)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Cena)
+                    @Html.DisplayFor(modelItem => item.Przebieg) km
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cena) zł
                 </td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.Id">Edytuj</a> |

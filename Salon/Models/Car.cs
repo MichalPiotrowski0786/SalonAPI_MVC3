@@ -32,7 +32,11 @@ namespace Salon.Models
         [Required(ErrorMessage = "Pole jest wymagane")]
         public int Rocznik { get; set; }
 
-        [Range(1000, 1500000, ErrorMessage = "Cena musi zawierać się w przedziale od 1000 do 1 500 000")]
+        [Range(0, 999999, ErrorMessage = "Przebieg musi zawierać się w przedziale od 0 do 999.999")]
+        [Required(ErrorMessage = "Pole jest wymagane")]
+        public int Przebieg { get; set; }
+
+        [Range(1000, 1500000, ErrorMessage = "Cena musi zawierać się w przedziale od 1000 do 1.500.000")]
         [Required(ErrorMessage = "Pole jest wymagane")]
         public int Cena { get; set; }
     }

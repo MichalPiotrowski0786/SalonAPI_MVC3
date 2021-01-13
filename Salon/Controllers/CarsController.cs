@@ -28,10 +28,12 @@ namespace Salon.Controllers
             ViewData["ModelSort"] = sortOrder == "Model" ? "model_desc" : "Model";
             ViewData["KolorSort"] = sortOrder == "Kolor" ? "kolor_desc" : "Kolor";
             ViewData["MocSort"] = sortOrder == "Moc" ? "moc_desc" : "Moc";
+            ViewData["PrzebiegSort"] = sortOrder == "Przebieg" ? "przebieg_desc" : "Przebieg";
             ViewData["CurrentFilter"] = searchString;
 
             var cars = from s in _context.Car
                        select s;
+
             if (!String.IsNullOrEmpty(searchString))
             {
                 cars = cars.Where(s => s.Marka.Contains(searchString)
@@ -75,6 +77,12 @@ namespace Salon.Controllers
                 case "moc_desc":
                     cars = cars.OrderByDescending(s => s.Moc);
                     break;
+                case "Przebieg":
+                    cars = cars.OrderBy(s => s.Przebieg);
+                    break;
+                case "przebieg_desc":
+                    cars = cars.OrderByDescending(s => s.Przebieg);
+                    break;
                 default:
                     cars = cars.OrderBy(s => s.Marka);
                     break;
@@ -108,7 +116,7 @@ namespace Salon.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Marka,Model,Kolor,Moc,Rocznik,Cena")] Car car)
+        public async Task<IActionResult> Create([Bind("Id,Marka,Model,Kolor,Moc,Rocznik,Przebieg,Cena")] Car car)
         {
 
             if (ModelState.IsValid)
@@ -147,7 +155,7 @@ namespace Salon.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Marka,Model,Kolor,Moc,Rocznik,Cena")] Car car)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Marka,Model,Kolor,Moc,Rocznik,Przebieg,Cena")] Car car)
         {
             if (id != car.Id)
             {
