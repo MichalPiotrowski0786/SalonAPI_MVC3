@@ -20,9 +20,63 @@ namespace Salon.Controllers
             _context = context;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string sortOrder, string searchString)
         {
-            return View(await _context.Car.ToListAsync());
+            ViewData["MarkaSort"] = String.IsNullOrEmpty(sortOrder) ? "marka_desc" : "";
+            ViewData["PriceSort"] = sortOrder == "Cena" ? "cena_desc" : "Cena";
+            ViewData["RocznikSort"] = sortOrder == "Rocznik" ? "rocznik_desc" : "Rocznik";
+            ViewData["ModelSort"] = sortOrder == "Model" ? "model_desc" : "Model";
+            ViewData["KolorSort"] = sortOrder == "Kolor" ? "kolor_desc" : "Kolor";
+            ViewData["MocSort"] = sortOrder == "Moc" ? "moc_desc" : "Moc";
+            ViewData["CurrentFilter"] = searchString;
+
+            var cars = from s in _context.Car
+                       select s;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                cars = cars.Where(s => s.Marka.Contains(searchString)
+                                       || s.Model.Contains(searchString));
+            }
+            switch (sortOrder)
+            {
+                case "marka_desc":
+                    cars = cars.OrderByDescending(s => s.Marka);
+                    break;
+                case "Cena":
+                    cars = cars.OrderBy(s => s.Cena);
+                    break;
+                case "cena_desc":
+                    cars = cars.OrderByDescending(s => s.Cena);
+                    break;
+                case "Rocznik":
+                    cars = cars.OrderBy(s => s.Rocznik);
+                    break;
+                case "rocznik_desc":
+                    cars = cars.OrderByDescending(s => s.Rocznik);
+                    break;
+                case "Model":
+                    cars = cars.OrderBy(s => s.Model);
+                    break;
+                case "model_desc":
+                    cars = cars.OrderByDescending(s => s.Model);
+                    break;
+                case "Kolor":
+                    cars = cars.OrderBy(s => s.Kolor);
+                    break;
+                case "kolor_desc":
+                    cars = cars.OrderByDescending(s => s.Kolor);
+                    break;
+                case "Moc":
+                    cars = cars.OrderBy(s => s.Moc);
+                    break;
+                case "moc_desc":
+                    cars = cars.OrderByDescending(s => s.Moc);
+                    break;
+                default:
+                    cars = cars.OrderBy(s => s.Model);
+                    break;
+            }
+            return View(await cars.AsNoTracking().ToListAsync());
         }
 
         public async Task<IActionResult> Details(int? id)
