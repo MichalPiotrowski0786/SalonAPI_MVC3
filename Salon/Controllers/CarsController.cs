@@ -22,7 +22,7 @@ namespace Salon.Controllers
 
         public async Task<IActionResult> Index(string sortOrder, string searchString)
         {
-            ViewData["MarkaSort"] = String.IsNullOrEmpty(sortOrder) ? "marka_desc" : "";
+            ViewData["MarkaSort"] = sortOrder == "Marka" ? "marka_desc" : "Marka";
             ViewData["PriceSort"] = sortOrder == "Cena" ? "cena_desc" : "Cena";
             ViewData["RocznikSort"] = sortOrder == "Rocznik" ? "rocznik_desc" : "Rocznik";
             ViewData["ModelSort"] = sortOrder == "Model" ? "model_desc" : "Model";
@@ -39,6 +39,9 @@ namespace Salon.Controllers
             }
             switch (sortOrder)
             {
+                case "Marka":
+                    cars = cars.OrderBy(s => s.Marka);
+                    break;
                 case "marka_desc":
                     cars = cars.OrderByDescending(s => s.Marka);
                     break;
@@ -73,7 +76,7 @@ namespace Salon.Controllers
                     cars = cars.OrderByDescending(s => s.Moc);
                     break;
                 default:
-                    cars = cars.OrderBy(s => s.Model);
+                    cars = cars.OrderBy(s => s.Marka);
                     break;
             }
             return View(await cars.AsNoTracking().ToListAsync());
