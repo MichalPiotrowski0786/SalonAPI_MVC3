@@ -11,7 +11,7 @@ namespace Salon.Models
         public int Id { get; set; }
 
         [StringLength(60, MinimumLength = 2, ErrorMessage = "Nazwa marki jest za długa lub za krótka")]
-        [RegularExpression(@"^[A-Z]+[a-zA-Z ]*$", ErrorMessage = "Podaj poprawną markę")]
+        [RegularExpression(@"^[A-Z]+[a-zA-Z\- ]*$", ErrorMessage = "Podaj poprawną markę")]
         [Required(ErrorMessage = "Pole jest wymagane")]
         public string Marka { get; set; }
 

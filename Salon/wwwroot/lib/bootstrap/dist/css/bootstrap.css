@@ -6595,6 +6595,10 @@ button.bg-dark:focus {
   background-color: transparent !important;
 }
 
+.bg-blue {
+  background-color: #66b3ff !important;
+}
+
 .border {
   border: 1px solid #dee2e6 !important;
 }
@@ -10005,7 +10009,7 @@ a.text-dark:hover, a.text-dark:focus {
     min-width: 992px !important;
   }
   .navbar {
-    display: none;
+     display: none;
   }
   .badge {
     border: 1px solid #000;
