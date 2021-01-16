@@ -1,22 +1,24 @@
 ﻿@model IEnumerable<Salon.Models.Car>
 
-@{
-    ViewData["Title"] = "Index";
-}
+@{ ViewData["Title"] = "Index"; }
 
 @if (TempData["add"] != null)
 {
-    <p class="alert-success">
-        @TempData["add"]
-    </p>
-}
+<p class="alert-success">
+    @TempData["add"]
+</p>}
 
 @if (TempData["del"] != null)
 {
-    <p class="alert-danger">
-        @TempData["del"]
-    </p>
-}
+<p class="alert-danger">
+    @TempData["del"]
+</p>}
+
+@if (TempData["edit"] != null)
+{
+<p class="alert-success">
+    @TempData["edit"]
+</p>}
 
 
 <h1>Katalog</h1>
@@ -65,34 +67,33 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Marka)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Model)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Kolor)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Moc) KM
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Rocznik)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Przebieg) km
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Cena) zł
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edytuj</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">Szczegóły</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Usuń</a>
-                </td>
-            </tr>
-        }
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Marka)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Model)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Kolor)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Moc) KM
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Rocznik)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Przebieg) km
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Cena) zł
+    </td>
+    <td>
+        <a asp-action="Edit" asp-route-id="@item.Id">Edytuj</a> |
+        <a asp-action="Details" asp-route-id="@item.Id">Szczegóły</a> |
+        <a asp-action="Delete" asp-route-id="@item.Id">Usuń</a>
+    </td>
+</tr>}
     </tbody>
 </table>

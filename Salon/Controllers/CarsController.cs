@@ -99,6 +99,7 @@ namespace Salon.Controllers
 
             var car = await _context.Car
                 .FirstOrDefaultAsync(m => m.Id == id);
+
             if (car == null)
             {
                 return NotFound();
@@ -107,7 +108,6 @@ namespace Salon.Controllers
             return View(car);
         }
 
-        /*[Authorize(Roles = "admins")]*/
         [Authorize(Policy = "writepolicy")]
         public IActionResult Create()
         {
@@ -136,7 +136,6 @@ namespace Salon.Controllers
             return View(car);
         }
 
-        /*[Authorize(Roles = "admins")]*/
         [Authorize(Policy = "writepolicy")]
         public async Task<IActionResult> Edit(int? id)
         {
@@ -167,6 +166,7 @@ namespace Salon.Controllers
                 try
                 {
                     _context.Update(car);
+                    TempData["edit"] = "Edytowano pojazd: " + car.Marka + " " + car.Model;
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
@@ -185,7 +185,6 @@ namespace Salon.Controllers
             return View(car);
         }
 
-        /*[Authorize(Roles = "admins")]*/
         [Authorize(Policy = "writepolicy")]
         public async Task<IActionResult> Delete(int? id)
         {

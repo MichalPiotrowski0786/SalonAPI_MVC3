@@ -20,7 +20,7 @@ namespace Salon.Models
         [Required(ErrorMessage = "Pole jest wymagane")]
         public string Model { get; set; }
 
-        [StringLength(20, MinimumLength = 1, ErrorMessage = "Podaj prawidłowy kolor")]
+        [StringLength(50, MinimumLength = 1, ErrorMessage = "Podaj prawidłowy kolor")]
         [RegularExpression(@"^[A-Z]+[a-zA-ZĄąĆćĘęŁłŃńÓóŚśŹźŻż\- ]*$", ErrorMessage = "Podaj prawidłowy kolor")]
         public string Kolor { get; set; }
 
@@ -28,7 +28,7 @@ namespace Salon.Models
         [Required(ErrorMessage = "Pole jest wymagane")]
         public int Moc { get; set; }
 
-        [Range(1900, 2021, ErrorMessage = "Rocznik musi zawierać się w przedziale od 1900 do 2021")]
+        [Range(1900, 2021, ErrorMessage = "Rocznik musi zawierać się w przedziale od 1900 do 2050")]
         [Required(ErrorMessage = "Pole jest wymagane")]
         public int Rocznik { get; set; }
 
